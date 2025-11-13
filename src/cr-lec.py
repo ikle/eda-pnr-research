@@ -16,9 +16,7 @@ def cr_lec (D, U):
 	V, s, t = get_vcg (U, D), -1, 1
 
 	while N:
-		n = get_left (N, V, s, L)
-
-		if n == 0:
+		if (n := get_left (N, V, s, L)) == 0:
 			s, t = -1, t + 1
 		else:
 			T[n] = t
