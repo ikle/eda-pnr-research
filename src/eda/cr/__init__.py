@@ -49,6 +49,13 @@ def get_ends (U, D, LE = eps, RE = eps):
 	return L, R, T
 
 #
+# Returns the set of nets which requires horizontal spans to route
+#
+def get_spans (U, D, L, R, LE = eps, RE = eps):
+	N = chain (U, D, LE & RE)
+	return set (filter (lambda n: n > 0 and L[n] < R[n], N))
+
+#
 # Returns vertical constraint graph (VCG) as a set of arrows from top pin to
 # bottom pin
 #
@@ -67,5 +74,5 @@ def vcg_top (N, V):
 def vcg_bot (N, V):
 	return N - {e[0] for e in V}
 
-__all__ = ['get_ends', 'get_vcg', 'vcg_top', 'vcg_bot']
+__all__ = ['get_ends', 'get_spans', 'get_vcg', 'vcg_top', 'vcg_bot']
 

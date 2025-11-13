@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from eda.cr import get_ends, get_vcg, vcg_top
+from eda.cr import get_ends, get_spans, get_vcg, vcg_top
 
 def get_left (N, V, edge, L):
 	if not (T := vcg_top (N, V)):
@@ -11,8 +11,8 @@ def get_left (N, V, edge, L):
 
 def cr_lec (D, U):
 	L, R, T = get_ends (U, D)
+	N = get_spans (U, D, L, R)
 
-	N = {n for n in U + D if n > 0 and L[n] < R[n]}
 	V, s, t = get_vcg (U, D), -1, 1
 
 	while N:
