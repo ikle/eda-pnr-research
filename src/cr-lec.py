@@ -6,7 +6,7 @@ def get_left (N, V, edge, L):
 	if not (T := vcg_top (N, V)):
 		raise ValueError ("Cycle detected")
 
-	F = [n for n in T if L[n] > edge]
+	F = filter (lambda n: L[n] > edge, T)
 	return min (F, key = lambda n: L[n], default = 0)
 
 def cr_lec (D, U):
