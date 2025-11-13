@@ -21,10 +21,10 @@ def validate (U, D, LE = eps, RE = eps):
 	if len (U) == 0:
 		raise ValueError ('Empty pin set')
 
-	if min (U + D, default = 0) < 0:
+	if min (chain (U, D), default = 0) < 0:
 		raise ValueError ('Invalid pin network number')
 
-	if min (LE + RE, default = 1) <= 0:
+	if min (chain (LE, RE), default = 1) <= 0:
 		raise ValueError ('Invalid side network number')
 
 #
