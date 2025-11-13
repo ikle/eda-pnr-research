@@ -1,0 +1,97 @@
+#!/usr/bin/python3
+
+def get_ends (U, D):
+	n = max (U + D)
+	L = [n] * (n + 1)	# left  ends of nets, L[0] -- place holder
+	R = [0] * (n + 1)	# right ends of nets, R[0] -- place holder
+
+	for i, (u, d) in enumerate (zip (U, D)):
+		L[u], R[u] = min (L[u], i), i
+		L[d], R[d] = min (L[d], i), i
+
+	return L, R, [0] * (n + 1)
+
+def get_vcg (U, D):
+	return {(u, d) for (u, d) in zip (U, D) if u > 0 and d > 0}
+
+def vcg_top (N, V):
+	top = N - {e[1] for e in V}
+
+	if top: return top
+
+	raise ValueError ("Cycle detected")
+
+def get_left (N, V, edge, L):
+	F = [n for n in vcg_top (N, V) if L[n] > edge]
+
+	return min (F, key = lambda n: L[n], default = 0)
+
+def cr_lec (D, U):
+	L, R, T = get_ends (U, D)
+
+	N = {n for n in U + D if n > 0 and L[n] < R[n]}
+	V, s, t = get_vcg (U, D), -1, 1
+
+	while N:
+		n = get_left (N, V, s, L)
+
+		if n == 0:
+			s, t = -1, t + 1
+		else:
+			T[n] = t
+			N.remove (n)
+			V = {e for e in V if e[0] != n}
+			s = R[n]
+
+	return L, R, T
+
+def get_density (U, D):				# O(n+k)
+	L, R, _ = get_ends (U, D)
+	LD = [0] * (len (D) + 1)
+
+	for n, (l, r) in enumerate (zip (L, R)):
+		if n > 0 and l < r:
+			LD[l  ] += 1
+			LD[r+1] -= 1
+
+	d = LD[0]
+
+	for i in range (1, len (LD)):
+		LD[i-1] = d
+		d += LD[i]
+
+	return LD[:-1]
+
+def show_tracks (T):
+	S = [list () for t in range (max (T))]
+
+	for n, t in enumerate (T):
+		if n > 0 and t > 0:
+			S[t-1].append (n)
+
+	print (S)
+
+#    0  1  2  3  4  5  6  7  8  9  10  11
+U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
+D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
+
+if False:					# O(n*k)
+	L, R, T = get_ends (U, D)
+
+	S = [set () for _ in range (len (U))]
+
+	for n, (l, r) in enumerate (zip (L, R)):
+		if n > 0 and l < r:
+			for i in range (l, r + 1):
+				S[i].add (n)
+
+	LD = [len (x) for x in S]
+
+	print (S)	# nets per column
+	print (LD)	# local density
+
+L, R, T = cr_lec (D, U)
+
+show_tracks (T)
+print (get_density (U, D))
+
