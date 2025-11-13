@@ -1,29 +1,12 @@
 #!/usr/bin/python3
 
-def get_ends (U, D):
-	n = max (U + D)
-	L = [n] * (n + 1)	# left  ends of nets, L[0] -- place holder
-	R = [0] * (n + 1)	# right ends of nets, R[0] -- place holder
-
-	for i, (u, d) in enumerate (zip (U, D)):
-		L[u], R[u] = min (L[u], i), i
-		L[d], R[d] = min (L[d], i), i
-
-	return L, R, [0] * (n + 1)
-
-def get_vcg (U, D):
-	return {(u, d) for (u, d) in zip (U, D) if u > 0 and d > 0}
-
-def vcg_top (N, V):
-	top = N - {e[1] for e in V}
-
-	if top: return top
-
-	raise ValueError ("Cycle detected")
+from eda.cr import get_ends, get_vcg, vcg_top
 
 def get_left (N, V, edge, L):
-	F = [n for n in vcg_top (N, V) if L[n] > edge]
+	if not (T := vcg_top (N, V)):
+		raise ValueError ("Cycle detected")
 
+	F = [n for n in T if L[n] > edge]
 	return min (F, key = lambda n: L[n], default = 0)
 
 def cr_lec (D, U):
