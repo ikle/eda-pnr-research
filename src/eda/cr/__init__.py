@@ -28,14 +28,13 @@ def validate (U, D, LE = eps, RE = eps):
 		raise ValueError ('Invalid side network number')
 
 #
-# Returns mappings to left, right and track coordinates. All nets are mapped
-# to track 0
+# Returns mappings to left and right span coordinates
 #
 def get_ends (U, D, LE = eps, RE = eps):
 	size = max (chain (U, D, LE, RE)) + 1
 	rx = len (U) - 1
 
-	L, R, T = [rx] * size, [0] * size, [0] * size
+	L, R = [rx] * size, [0] * size
 
 	for x, u, d in zip (range (rx, -1, -1), reversed (U), reversed (D)):
 		L[u], L[d] = x, x
@@ -46,7 +45,7 @@ def get_ends (U, D, LE = eps, RE = eps):
 	for n in LE: L[n] = 0
 	for n in RE: R[n] = rx
 
-	return L, R, T
+	return L, R
 
 #
 # Returns the set of nets which requires horizontal spans to route

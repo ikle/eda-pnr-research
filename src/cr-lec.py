@@ -10,10 +10,10 @@ def get_left (N, V, edge, L):
 	return min (F, key = lambda n: L[n], default = 0)
 
 def cr_lec (D, U):
-	L, R, T = get_ends (U, D)
+	L, R = get_ends (U, D)
 	N, V = get_spans (U, D, L, R), get_vcg (U, D)
 
-	s, t = -1, 1
+	s, t, T = -1, 1, [0] * len (L)
 
 	while N:
 		if (n := get_left (N, V, s, L)) == 0:
@@ -27,7 +27,7 @@ def cr_lec (D, U):
 	return L, R, T
 
 def get_density (U, D):				# O(n+k)
-	L, R, _ = get_ends (U, D)
+	L, R = get_ends (U, D)
 	LD = [0] * (len (D) + 1)
 
 	for n, (l, r) in enumerate (zip (L, R)):
@@ -57,7 +57,7 @@ U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
 D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 
 if False:					# O(n*k)
-	L, R, T = get_ends (U, D)
+	L, R = get_ends (U, D)
 
 	S = [set () for _ in range (len (U))]
 
