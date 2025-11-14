@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-from eda.cr     import get_ends
 from eda.cr.lec import route as cr_lec
 
-def get_density (U, D):				# O(n+k)
-	L, R = get_ends (U, D)
-	LD = [0] * (len (D) + 1)
+def get_density (L, R, size):			# O(n+k)
+	LD = [0] * (size + 1)
 
 	for n, (l, r) in enumerate (zip (L, R)):
 		if n > 0 and l < r:
@@ -36,11 +34,9 @@ D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 L, R, T = cr_lec (D, U)
 
 show_tracks (T)
-print (get_density (U, D))
+print (get_density (L, R, len (U)))
 
 if False:					# O(n*k)
-	L, R = get_ends (U, D)
-
 	S = [set () for _ in range (len (U))]
 
 	for n, (l, r) in enumerate (zip (L, R)):
