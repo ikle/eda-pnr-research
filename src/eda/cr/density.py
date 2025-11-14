@@ -23,5 +23,11 @@ def build (L, R, size):			# O(n+k)
 
 	return LD[:-1]
 
-__all__ = ['build']
+def reduce (LD, l, r):
+	for x in range (l, r+1):
+		LD[x] -= 1
+
+	return LD
+
+__all__ = ['build', 'reduce']
 
