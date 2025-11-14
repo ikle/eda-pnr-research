@@ -44,7 +44,7 @@ def get_density (U, D):				# O(n+k)
 	return LD[:-1]
 
 def show_tracks (T):
-	S = [list () for t in range (max (T))]
+	S = [[] for t in range (max (T))]
 
 	for n, t in enumerate (T):
 		if n > 0 and t > 0:
