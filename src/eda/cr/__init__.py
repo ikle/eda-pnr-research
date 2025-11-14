@@ -73,5 +73,5 @@ def vcg_top (N, V):
 def vcg_bot (N, V):
 	return N - {e[0] for e in V}
 
-__all__ = ['get_ends', 'get_spans', 'get_vcg', 'vcg_top', 'vcg_bot']
+__all__ = ['get_ends', 'get_spans', 'get_vcg', 'vcg_top', 'vcg_bot', 'lec']
 
