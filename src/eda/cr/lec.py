@@ -9,6 +9,8 @@
 
 from eda.cr import get_ends, get_spans, get_vcg, vcg_top
 
+eps = frozenset ()
+
 def get_left (N, V, edge, L):
 	if not (T := vcg_top (N, V)):
 		raise ValueError ("Cycle detected")
@@ -16,9 +18,9 @@ def get_left (N, V, edge, L):
 	F = filter (lambda n: L[n] > edge, T)
 	return min (F, key = lambda n: L[n], default = 0)
 
-def route (D, U):
-	L, R = get_ends (U, D)
-	N, V = get_spans (U, D, L, R), get_vcg (U, D)
+def route (D, U, LE = eps, RE = eps):
+	L, R = get_ends (U, D, LE, RE)
+	N, V = get_spans (U, D, L, R, LE, RE), get_vcg (U, D)
 
 	s, t, T = -1, 1, [0] * len (L)
 
