@@ -11,9 +11,9 @@ def get_left (N, V, edge, L):
 
 def cr_lec (D, U):
 	L, R, T = get_ends (U, D)
-	N = get_spans (U, D, L, R)
+	N, V = get_spans (U, D, L, R), get_vcg (U, D)
 
-	V, s, t = get_vcg (U, D), -1, 1
+	s, t = -1, 1
 
 	while N:
 		if (n := get_left (N, V, s, L)) == 0:
