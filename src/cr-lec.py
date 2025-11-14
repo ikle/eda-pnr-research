@@ -21,10 +21,11 @@ L, R, T = cr_lec (D, U)
 show_tracks (T)
 
 LD = cd_density (L, R, len (U))
-print (LD)
+print (LD, '->', max (LD))
+
 cd_reduce (LD, L[ 1], R[ 1])
 cd_reduce (LD, L[10], R[10])
-print (LD)
+print (LD, '->', max (LD))
 
 if False:					# O(n*k)
 	S = [set () for _ in range (len (U))]
