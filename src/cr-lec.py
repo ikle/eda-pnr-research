@@ -19,10 +19,10 @@ def cr_lec (D, U):
 		if (n := get_left (N, V, s, L)) == 0:
 			s, t = -1, t + 1
 		else:
-			T[n] = t
 			N.remove (n)
 			V = {e for e in V if e[0] != n}
 			s = R[n]
+			T[n] = t
 
 	return L, R, T
 
