@@ -33,6 +33,11 @@ def show_tracks (T):
 U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
 D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 
+L, R, T = cr_lec (D, U)
+
+show_tracks (T)
+print (get_density (U, D))
+
 if False:					# O(n*k)
 	L, R = get_ends (U, D)
 
@@ -47,9 +52,4 @@ if False:					# O(n*k)
 
 	print (S)	# nets per column
 	print (LD)	# local density
-
-L, R, T = cr_lec (D, U)
-
-show_tracks (T)
-print (get_density (U, D))
 
