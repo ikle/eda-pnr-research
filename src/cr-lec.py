@@ -1,22 +1,7 @@
 #!/usr/bin/python3
 
 from eda.cr.lec import route as cr_lec
-
-def get_density (L, R, size):			# O(n+k)
-	LD = [0] * (size + 1)
-
-	for n, (l, r) in enumerate (zip (L, R)):
-		if n > 0 and l < r:
-			LD[l  ] += 1
-			LD[r+1] -= 1
-
-	d = LD[0]
-
-	for i in range (1, len (LD)):
-		LD[i-1] = d
-		d += LD[i]
-
-	return LD[:-1]
+from eda.cr.density import build as cd_density
 
 def show_tracks (T):
 	S = [[] for t in range (max (T))]
@@ -34,7 +19,7 @@ D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 L, R, T = cr_lec (D, U)
 
 show_tracks (T)
-print (get_density (L, R, len (U)))
+print (cd_density (L, R, len (U)))
 
 if False:					# O(n*k)
 	S = [set () for _ in range (len (U))]
