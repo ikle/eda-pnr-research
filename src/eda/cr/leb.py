@@ -15,23 +15,16 @@ from eda.cr.density import build as cd_build, reduce as cd_reduce
 eps = frozenset ()
 
 def left (a, b, L, R, W):
-	if R[a] < L[b]:  return a		# disjoint, a on left
-	if R[b] < L[a]:  return b		# disjoint, b on left
+	if L[a] > L[b]:				# sort by left edge
+		a, b = b, a
 
-	if L[a] < L[b]:
-		if R[b] < R[a]:  return a	# b in a, return bigger
-
+	if L[b] < R[a] and R[a] < R[b]:
 		LW = max (W [L[a]   : L[b]  ])	# left  arm density (a arm)
 		RW = max (W [R[a]+1 : R[b]+1])	# right arm density (b arm)
 
 		return a if LW >= RW else b
-	else:
-		if R[a] < R[b]:  return b	# a in b, return bigger
 
-		LW = max (W [L[b]   : L[a]  ])	# left  arm density (b arm)
-		RW = max (W [R[b]+1 : R[a]+1])	# right arm density (a arm)
-
-		return b if LW >= RW else a
+	return a
 
 def get_left (F, edge, L, R, W):
 	F = [n for n in F if L[n] > edge]
