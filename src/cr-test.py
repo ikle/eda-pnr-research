@@ -3,8 +3,11 @@
 from eda.cr.lec import route as cr_lec
 from eda.cr.leb import route as cr_leb
 
-def show_tracks (prefix, L, T):
+from eda.cr.density import build as cn_density
+
+def show_tracks (prefix, L, R, T):
 	S = [[] for t in range (max (T))]
+	LD = cn_density (L, R, max (R) + 1)
 
 	for n, t in enumerate (T):
 		if n > 0 and t > 0:
@@ -13,17 +16,17 @@ def show_tracks (prefix, L, T):
 	for track in S:
 		track.sort (key = lambda n : L[n])
 
-	print (prefix, S, '->', len (S))
+	print (prefix, S, '->', len (S), '/', max (LD))
 
 def test_lec (U, D):
 	L, R, T = cr_lec (U, D)
 
-	show_tracks ('LEC =', L, T)
+	show_tracks ('LEC =', L, R, T)
 
 def test_leb (U, D):
 	L, R, T = cr_leb (U, D)
 
-	show_tracks ('LEB =', L, T)
+	show_tracks ('LEB =', L, R, T)
 
 #    0  1  2  3  4  5  6  7  8  9  10  11
 U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
