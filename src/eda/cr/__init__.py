@@ -59,7 +59,7 @@ def get_spans (U, D, L, R, LE = eps, RE = eps):
 # bottom pin
 #
 def get_vcg (U, D):
-	return {(u, d) for (u, d) in zip (U, D) if u > 0 and d > 0}
+	return {(u, d) for (u, d) in zip (U, D) if u > 0 and d > 0 and u != d}
 
 #
 # Returns top nets. N -- set of nets, V -- VCG
