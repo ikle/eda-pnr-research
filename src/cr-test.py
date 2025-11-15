@@ -29,6 +29,20 @@ D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 test_lec (U, D)
 test_leb (U, D)
 
+#    0  1  2  3  4  5  6
+U = [1, 0, 2, 1, 0, 4, 2]
+D = [5, 5, 0, 0, 3, 3, 4]
+
+test_lec (U, D)
+test_leb (U, D)
+
+#    0  1  2  3  4  5  6  7
+U = [0, 1, 1, 3, 0, 2, 2, 3]
+D = [4, 0, 5, 0, 4, 0, 5, 0]
+
+test_lec (U, D)
+test_leb (U, D)
+
 if False:					# O(n*k)
 	S = [set () for _ in range (len (U))]
 
