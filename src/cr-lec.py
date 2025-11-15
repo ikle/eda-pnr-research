@@ -2,7 +2,7 @@
 
 from eda.cr.lec import route as cr_lec
 from eda.cr.leb import route as cr_leb
-from eda.cr.density import build as cd_density, reduce as cd_reduce
+from eda.cr.density import build as cd_density
 
 def show_tracks (T):
 	S = [[] for t in range (max (T))]
@@ -26,10 +26,6 @@ L, R, T = cr_leb (D, U)
 show_tracks (T)
 
 LD = cd_density (L, R, len (U))
-print (LD, '->', max (LD))
-
-cd_reduce (LD, L[ 1], R[ 1])
-cd_reduce (LD, L[10], R[10])
 print (LD, '->', max (LD))
 
 if False:					# O(n*k)
