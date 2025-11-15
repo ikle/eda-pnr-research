@@ -13,12 +13,12 @@ def show_tracks (prefix, T):
 	print (prefix, S)
 
 def test_lec (U, D):
-	L, R, T = cr_lec (D, U)
+	L, R, T = cr_lec (U, D)
 
 	show_tracks ('LEC =', T)
 
 def test_leb (U, D):
-	L, R, T = cr_leb (D, U)
+	L, R, T = cr_leb (U, D)
 
 	show_tracks ('LEB =', T)
 

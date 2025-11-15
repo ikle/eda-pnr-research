@@ -38,7 +38,7 @@ def get_left (F, edge, L, R, W):
 
 	return reduce (lambda a, b: left (a, b, L, R, W), F) if F else 0
 
-def route (D, U, LE = eps, RE = eps):
+def route (U, D, LE = eps, RE = eps):
 	L, R = get_ends (U, D, LE, RE)
 	N, V = get_spans (U, D, L, R, LE, RE), get_vcg (U, D)
 	W = cd_density (L, R, len (U))

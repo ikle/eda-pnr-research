@@ -15,7 +15,7 @@ def get_left (F, edge, L):
 	F = filter (lambda n: L[n] > edge, F)
 	return min (F, key = lambda n: L[n], default = 0)
 
-def route (D, U, LE = eps, RE = eps):
+def route (U, D, LE = eps, RE = eps):
 	L, R = get_ends (U, D, LE, RE)
 	N, V = get_spans (U, D, L, R, LE, RE), get_vcg (U, D)
 
