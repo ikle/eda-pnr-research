@@ -13,7 +13,7 @@ def show_tracks (prefix, L, T):
 	for track in S:
 		track.sort (key = lambda n : L[n])
 
-	print (prefix, S)
+	print (prefix, S, '->', len (S))
 
 def test_lec (U, D):
 	L, R, T = cr_lec (U, D)
