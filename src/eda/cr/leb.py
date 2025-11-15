@@ -10,7 +10,7 @@
 from functools import reduce
 
 from eda.cr import get_ends, get_spans, get_vcg, vcg_top
-from eda.cr.density import build as cd_density, reduce as cd_reduce
+from eda.cr.density import build as cd_build, reduce as cd_reduce
 
 eps = frozenset ()
 
@@ -41,7 +41,7 @@ def get_left (F, edge, L, R, W):
 def route (U, D, LE = eps, RE = eps):
 	L, R = get_ends (U, D, LE, RE)
 	N, V = get_spans (U, D, L, R, LE, RE), get_vcg (U, D)
-	W = cd_density (L, R, len (U))
+	W = cd_build (L, R, len (U))
 
 	s, t, T = -1, 1, [0] * len (L)
 
