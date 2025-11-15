@@ -74,5 +74,5 @@ def vcg_bot (N, V):
 	return N - {e[0] for e in V}
 
 __all__ = ['get_ends', 'get_spans', 'get_vcg', 'vcg_top', 'vcg_bot',
-	   'density', 'lec']
+	   'density', 'lec', 'leb']
 

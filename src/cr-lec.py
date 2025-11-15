@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from eda.cr.lec import route as cr_lec
+from eda.cr.leb import route as cr_leb
 from eda.cr.density import build as cd_density, reduce as cd_reduce
 
 def show_tracks (T):
@@ -17,6 +18,10 @@ U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
 D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 
 L, R, T = cr_lec (D, U)
+
+show_tracks (T)
+
+L, R, T = cr_leb (D, U)
 
 show_tracks (T)
 
