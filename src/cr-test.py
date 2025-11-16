@@ -18,12 +18,13 @@ def show_tracks (prefix, L, R, T):
 
 	print (prefix, S, '->', len (S), '/', max (LD))
 
-def test_lec (U, D):
+def test (U, D, desc):
+	print (f'\n  {desc}\n')
+
 	L, R, T = cr_lec (U, D)
 
 	show_tracks ('LEC =', L, R, T)
 
-def test_leb (U, D):
 	L, R, T = cr_leb (U, D)
 
 	show_tracks ('LEB =', L, R, T)
@@ -32,31 +33,25 @@ def test_leb (U, D):
 U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
 D = [2, 3, 5, 3, 5, 2, 6, 8, 9, 8,  7,  9]
 
-test_lec (U, D)
-test_leb (U, D)
+test (U, D, 'YT84 1')
 
 #    0  1  2  3  4  5  6  7  8  9  10  11  12
 U = [0, 0, 1, 4, 5, 1, 6, 7, 0, 4,  9, 10, 10]
 D = [2, 0, 5, 0, 5, 2, 6, 8, 9, 8,  7,  9,  0]
 
-test_lec (U, D)
-test_leb (U, D)
+test (U, D, 'YT84 1 modified')
 
 #    0  1  2  3  4  5  6
 U = [1, 0, 2, 1, 0, 4, 2]
 D = [5, 5, 0, 0, 3, 3, 4]
 
-test_lec (U, D)
-test_leb (U, D)
+test (U, D, 'YT84 10')
 
 #    0  1  2  3  4  5  6  7
 U = [0, 1, 1, 3, 0, 2, 2, 3]
 D = [4, 0, 5, 0, 4, 0, 5, 0]
 
-test_lec (U, D)
-test_leb (U, D)
-
-print ('\nDeutsch\'s Difficult Example A:\n')
+test (U, D, 'YT84 12')
 
 #      1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
 U0 = [ 2,  4,  6,  8, 10, 11, 13,  3,  9, 16,  5, 17, 11,  5, 14, 14,  7, 12, 17, 19]
@@ -93,8 +88,7 @@ D7 = [ 0, 24, 52, 20,  0, 24,  0, 46,  0,  0,  0,  0, 24,  0, 20, 52]
 U = U0 + U1 + U2 + U3 + U4 + U5 + U6 + U7
 D = D0 + D1 + D2 + D3 + D4 + D5 + D6 + D7
 
-test_lec (U, D)
-test_leb (U, D)
+test (U, D, 'Deutsch\'s Difficult Example A')
 
 if False:					# O(n*k)
 	S = [set () for _ in range (len (U))]
