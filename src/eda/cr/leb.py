@@ -42,14 +42,14 @@ def route (U, D, LE = eps, RE = eps):
 		if not (F := vcg_top (N, V)):
 			raise ValueError ("Cycle detected")
 
-		if (n := get_left (F, s, L, R, W)) == 0:
-			s, t = -1, t + 1
-		else:
+		while (n := get_left (F, s, L, R, W)) != 0:
 			N.remove (n)
 			V = {e for e in V if e[0] != n}
 			cd_reduce (W, L[n], R[n])
 			s = R[n]
 			T[n] = t
+
+		s, t = -1, t + 1
 
 	return L, R, T
 
