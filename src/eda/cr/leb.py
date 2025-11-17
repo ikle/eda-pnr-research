@@ -9,8 +9,9 @@
 
 from functools import reduce
 
-from eda.cr import get_ends, get_spans, get_vcg, vcg_top
+from eda.cr import get_ends
 from eda.cr.density import build as cd_build, reduce as cd_reduce
+from eda.cr.vcg import VCG
 
 eps = frozenset ()
 
@@ -33,18 +34,17 @@ def get_left (F, edge, L, R, W):
 
 def route (U, D, LE = eps, RE = eps):
 	L, R = get_ends (U, D, LE, RE)
-	N, V = get_spans (U, D, L, R, LE, RE), get_vcg (U, D)
+	V = VCG (U, D, LE, RE)
 	W = cd_build (L, R, len (U))
 
 	s, t, T = -1, 1, [0] * len (L)
 
-	while N:
-		if not (F := vcg_top (N, V)):
+	while V:
+		if not (F := V.top):
 			raise ValueError ("Cycle detected")
 
 		while (n := get_left (F, s, L, R, W)) != 0:
-			N.remove (n)
-			V = {e for e in V if e[0] != n}
+			V.remove (n)
 			cd_reduce (W, L[n], R[n])
 			s = R[n]
 			T[n] = t
