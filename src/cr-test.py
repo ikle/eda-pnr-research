@@ -101,6 +101,11 @@ D = D0 + D1 + D2 + D3 + D4 + D5 + D6 + D7
 
 test (U, D, 'Deutsch\'s Difficult Example A')
 
+U = list (reversed (U))
+D = list (reversed (D))
+
+test (U, D, 'Deutsch\'s Difficult Example A, reversed')
+
 if False:					# O(n*k)
 	S = [set () for _ in range (len (U))]
 
