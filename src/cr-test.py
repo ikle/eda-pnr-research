@@ -2,6 +2,7 @@
 
 from eda.cr.lec import route as cr_lec
 from eda.cr.leb import route as cr_leb
+from eda.cr.lew import route as cr_lew
 
 from eda.cr.density import build as cn_density
 
@@ -28,6 +29,10 @@ def test (U, D, desc):
 	L, R, T = cr_leb (U, D)
 
 	show_tracks ('LEB =', L, R, T)
+
+	L, R, T = cr_lew (U, D)
+
+	show_tracks ('LEW =', L, R, T)
 
 #    0  1  2  3  4  5  6  7  8  9  10  11
 U = [0, 1, 4, 5, 1, 6, 7, 0, 4, 9, 10, 10]
