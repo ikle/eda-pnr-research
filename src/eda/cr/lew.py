@@ -22,7 +22,7 @@ def get_weight (P, n, L, R, MD, LD):
 	return sum (map (fn, LD [L[n] : R[n]+1]), P)
 
 def get_track (F, L, R, LD, size):
-	ZP, ZA, P, A, MD = [0] * (size + 1), [0] * size, 0, 0, max (LD)
+	ZP, ZA, P, A, MD = [0] * (size + 1), [0] * (size + 1), 0, 0, max (LD)
 
 	for n in F:  ZA[L[n]] = n  # max one net in top can start in same x
 
@@ -40,7 +40,7 @@ def get_track (F, L, R, LD, size):
 
 	while (n := ZA[i]) > 0:  # ZA for rightmost n end is always zero
 		yield n
-		i = R[n]
+		i = R[n]+1
 
 def route (U, D, LE = eps, RE = eps):
 	L, R = get_ends (U, D, LE, RE)
