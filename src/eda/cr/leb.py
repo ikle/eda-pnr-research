@@ -19,7 +19,7 @@ def left (a, b, L, R, W):
 	if L[a] > L[b]:				# sort by left edge
 		a, b = b, a
 
-	if L[b] < R[a] and R[a] < R[b]:
+	if L[a] < L[b] and L[b] < R[a] and R[a] < R[b]:
 		LW = max (W [L[a]   : L[b]  ])	# left  arm density (a arm)
 		RW = max (W [R[a]+1 : R[b]+1])	# right arm density (b arm)
 
