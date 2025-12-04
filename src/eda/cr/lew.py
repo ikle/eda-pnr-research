@@ -26,7 +26,7 @@ def get_track (F, L, R, LD, size):
 
 	for n in F:  ZA[L[n]] = n  # max one net in top can start in same x
 
-	for i in reversed (range (size - 1)):  # net cannot start in last x
+	for i in reversed (range (size)):
 		if (n := ZA[i]) > 0:
 			NP = get_weight (ZP[R[n]+1], n, L, R, MD, LD)
 
