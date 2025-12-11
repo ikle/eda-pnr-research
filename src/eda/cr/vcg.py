@@ -56,5 +56,11 @@ class VCG:
 		o.child[0].remove (n)
 		o.ref[n] = 0
 
+	def depth (o, n):
+		if not o.child[n]:
+			return 0
+
+		return max ([o.depth (i) for i in o.child[n]]) + 1
+
 __all__ = ['VCG']
 
