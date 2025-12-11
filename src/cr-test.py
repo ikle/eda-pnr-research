@@ -4,11 +4,11 @@ from eda.cr.lec import route as cr_lec
 from eda.cr.leb import route as cr_leb
 from eda.cr.lew import route as cr_lew
 
-from eda.cr.density import build as cn_density
+from eda.cr.density import build as cd_density
 
 def show_tracks (prefix, L, R, T):
 	S = [[] for t in range (max (T))]
-	LD = cn_density (L, R, max (R) + 1)
+	LD = cd_density (L, R, max (R) + 1)
 
 	for n, t in enumerate (T):
 		if n > 0 and t > 0:
