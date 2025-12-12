@@ -62,5 +62,16 @@ class VCG:
 
 		return max ([o.depth (i) for i in o.child[n]]) + 1
 
+	def density (o, LD, L, R):
+		LD = list (LD)
+
+		for n in range (1, len (o.child)):
+			h = o.depth (n) + 1
+
+			for x in range (L[n], R[n]+1):
+				LD[x] = max (LD[x], h)
+
+		return LD
+
 __all__ = ['VCG']
 
