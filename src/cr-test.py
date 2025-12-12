@@ -5,10 +5,13 @@ from eda.cr.leb import route as cr_leb
 from eda.cr.lew import route as cr_lew
 
 from eda.cr.density import build as cd_density
+from eda.cr.vcg import VCG
 
 def show_tracks (prefix, L, R, T):
 	S = [[] for t in range (max (T))]
 	LD = cd_density (L, R, max (R) + 1)
+	V = VCG (U, D)
+	MD, VD = max (LD), max (V.density (LD, L, R))
 
 	for n, t in enumerate (T):
 		if n > 0 and t > 0:
@@ -17,7 +20,10 @@ def show_tracks (prefix, L, R, T):
 	for track in S:
 		track.sort (key = lambda n : L[n])
 
-	print (prefix, S, '->', len (S), '/', max (LD))
+	if VD > MD:
+		print (prefix, S, f'-> {len (S)} / {VD} ({MD})')
+	else:
+		print (prefix, S, f'-> {len (S)} / {VD}')
 
 eps = frozenset ()
 
