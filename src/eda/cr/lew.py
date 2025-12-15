@@ -58,7 +58,7 @@ def route (U, D, LE = eps, RE = eps):
 			cd_reduce (W, L[n], R[n])
 			T[n] = t
 
-		s, t = -1, t + 1
+		t = t + 1
 
 	return L, R, T
 
