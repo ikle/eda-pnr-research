@@ -5,6 +5,8 @@ LIBNAME	= eda-pnr-research
 LIBVER	= 0
 LIBREV	= 0.1
 
+DEPENDS = cairo
+
 include make-core.mk
 
 s-path-test: LDFLAGS += -lm
