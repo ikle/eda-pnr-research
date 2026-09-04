@@ -60,4 +60,6 @@ int s_path_arc   (struct s_path *o, int cx, int cy, int x, int y);
 int s_path_cubic (struct s_path *o, int ax, int ay, int bx, int by, int x, int y);
 int s_path_close (struct s_path *o);
 
+int s_path_bbox  (struct s_path *o, int *lx, int *ly, int *hx, int *hy);
+
 #endif  /* S_PATH_H */

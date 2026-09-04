@@ -65,6 +65,7 @@ int main (int argc, char *argv[])
 {
 	struct s_path path, *o = &path;
 	struct s_path_trace c = {0, 0, 0, 0, on_open, on_step, on_close};
+	int lx, ly, hx, hy;
 
 	s_path_init (o);
 
@@ -84,6 +85,9 @@ int main (int argc, char *argv[])
 
 	s_path_show (o);
 	s_path_trace (&c, o);
+
+	s_path_bbox (o, &lx, &ly, &hx, &hy);
+	printf ("bbox %d %d - %d %d\n", lx, ly, hx, hy);
 
 	s_path_fini (o);
 	return 0;
