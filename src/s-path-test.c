@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "s-path.h"
+#include "s-path-trace.h"
 
 #define ARRAY_SIZE(a)  (sizeof (a) / sizeof ((a)[0]))
 
@@ -43,9 +43,28 @@ static void s_path_show (struct s_path *o)
 		s_path_term_show (o->term + i);
 }
 
+static int on_open (void *o, int tx, int ty)
+{
+	printf ("open %d %d\n", tx, ty);
+	return 1;
+}
+
+static int on_step (void *o, int tx, int ty)
+{
+	printf ("step %d %d\n", tx, ty);
+	return 1;
+}
+
+static int on_close (void *o, int tx, int ty)
+{
+	printf ("close %d %d\n\n", tx, ty);
+	return 1;
+}
+
 int main (int argc, char *argv[])
 {
 	struct s_path path, *o = &path;
+	struct s_path_trace c = {0, 0, 0, 0, on_open, on_step, on_close};
 
 	s_path_init (o);
 
@@ -64,6 +83,7 @@ int main (int argc, char *argv[])
 	s_path_close (o);
 
 	s_path_show (o);
+	s_path_trace (&c, o);
 
 	s_path_fini (o);
 	return 0;
